@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <div class="col-lg-8 mx-auto p-3 py-md-5">
+    <div class="col-lg-10 mx-auto p-3 py-md-5">
         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
             <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
                 <img src="https://wc-hospital.go.th/img/wc_logo_2.png" style="width: 10%;" alt="โรงพยาบาลวัดจันทร์เฉลิมพระเกียรติ ๘๐ พรรษา">
@@ -48,7 +48,7 @@
             </a>
         </header>
         <main>
-            <div class="contain-fluid">
+            <div class="col-md-12">
                 @php
                     $array = json_decode(json_encode($data), true);
                     function build_table($array){

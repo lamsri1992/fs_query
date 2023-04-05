@@ -1,0 +1,13 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,v.age_y,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join vn_stat v on v.vn=o.vn
+where o.vstdate between D1 and D2
+and v.age_y between'3'and'12'
+and (v.pdx in('Z010','Z135','Z460')
+or v.dx0 in('Z010','Z135','Z460')
+or v.dx1 in('Z010','Z135','Z460')
+or v.dx2 in('Z010','Z135','Z460')
+or v.dx3 in('Z010','Z135','Z460')
+or v.dx4 in('Z010','Z135','Z460')
+or v.dx5 in('Z010','Z135','Z460'))

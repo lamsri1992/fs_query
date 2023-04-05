@@ -1,0 +1,9 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from person_anc a
+left outer join person_anc_service pas on a.person_anc_id=pas.person_anc_id
+left outer join person_anc_screen pac on pas.person_anc_service_id=pac.person_anc_service_id
+left outer join person p on p.person_id = a.person_id
+left outer join patient pt on p.cid=pt.cid
+left outer join ovst o on o.vn=pas.vn
+where o.vstdate between D1 and D2
+order by p.cid,a.person_anc_no,pas.pa_week,auth_code

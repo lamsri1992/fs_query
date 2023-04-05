@@ -1,0 +1,9 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join opitemrece op on op.vn=o.vn
+left join nondrugitems n on n.icode=op.icode
+-- ระบุวันที่เริ่มต้น และสิ้นสุด
+where o.vstdate between D1 and D2
+and n.nhso_adp_code = '30014'
+group by o.vn,o.vn,o.hn,o.an,o.vstdate,o.vsttime,auth_code

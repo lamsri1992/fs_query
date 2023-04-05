@@ -1,0 +1,19 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join vn_stat v on v.vn=o.vn
+left join opitemrece op on op.vn=o.vn
+left join nondrugitems n on n.icode=op.icode
+left join dttm d on d.icode=op.icode
+where o.vstdate between D1 and D2
+and v.age_y between"25"and"59"
+and ((v.pdx in("K029","K0609","K1170")
+or v.dx0 in("K029","K0609","K1170")
+or v.dx1 in("K029","K0609","K1170")
+or v.dx2 in("K029","K0609","K1170")
+or v.dx3 in("K029","K0609","K1170")
+or v.dx4 in("K029","K0609","K1170")
+or v.dx5 in("K029","K0609","K1170"))
+or d.icd9cm in("232","9654")
+or n.nhso_adp_code IN('15001'))
+group by o.vn

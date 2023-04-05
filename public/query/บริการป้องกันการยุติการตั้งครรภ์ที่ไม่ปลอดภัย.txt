@@ -1,0 +1,16 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join vn_stat v on v.vn=o.vn
+left outer join opitemrece op on op.vn=o.vn
+left outer join nondrugitems n on n.icode=op.icode
+left outer join drugitems d on d.icode=op.icode
+where o.vstdate between D1 and D2
+and ((v.pdx between 'O040' and 'O049'
+or v.dx0 between 'O040' and 'O049'
+or v.dx1 between 'O040' and 'O049'
+or v.dx2 between 'O040' and 'O049'
+or v.dx3 between 'O040' and 'O049'
+or v.dx4 between 'O040' and 'O049'
+or v.dx5 between 'O040' and 'O049') or d.sks_drug_code='1011649')
+group by o.vn

@@ -1,0 +1,12 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join vn_stat v on v.vn=o.vn
+where o.vstdate between D1 and D2
+and (v.pdx in('Z300','Z301','Z304','Z308')
+or v.dx0 in('Z300','Z301','Z304','Z308')
+or v.dx1 in('Z300','Z301','Z304','Z308')
+or v.dx2 in('Z300','Z301','Z304','Z308')
+or v.dx3 in('Z300','Z301','Z304','Z308')
+or v.dx4 in('Z300','Z301','Z304','Z308')
+or v.dx5 in('Z300','Z301','Z304','Z308'))

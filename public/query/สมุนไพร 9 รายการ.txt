@@ -1,0 +1,10 @@
+select o.vn,o.hn,o.an,o.vstdate,o.vsttime,concat(p.pname,p.fname,' ',p.lname) as fullname,'' as auth_code
+from ovst o
+left join patient p on p.hn=o.hn
+left join opitemrece op on op.vn=o.vn
+left join drugitems d on d.icode=op.icode
+left join pttype pt on pt.pttype=o.pttype
+where o.vstdate between D1 and D2 and pt.hipdata_code in ('UCS','WEL') and p.nationality = '99' 
+and o.hospmain in('10676','11253','11251','11252','11254','11255','11256','11257','14972','11455','11517')
+and d.nhso_adp_code between 'HERB1'and'HERB9'
+group by o.vn
